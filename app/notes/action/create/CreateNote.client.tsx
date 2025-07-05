@@ -1,7 +1,6 @@
 "use client"
 
 import NoteForm from "@/components/NoteForm/NoteForm";
-import  css from "./page.module.css";
 import { useRouter } from "next/navigation";
 import { Metadata } from "next";
 
@@ -32,14 +31,7 @@ const CreateNoteClient = () => {
         router.back();
     }
 
-    return (
-        <main className={css.main}>
-            <div className={css.container}>
-                <h1 className={css.title}>Create note</h1>
-                <NoteForm onClose={handleClose}/>
-            </div>
-        </main>
-    )
+    return <NoteForm onClose={handleClose} />;
 }
 
 export default CreateNoteClient;
