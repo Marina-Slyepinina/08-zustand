@@ -15,7 +15,7 @@ export const fetchNotes = async (query: string, page: number, tag: string): Prom
             Authorization: `Bearer ${token}`,
         },
         params: {
-            ...(tag !== "all" ? {tag: tag} : {}),
+            ...(tag !== "All" ? {tag: tag} : {}),
             ...(query !== "" ? {search: query} : {}),
             page,
             perPage

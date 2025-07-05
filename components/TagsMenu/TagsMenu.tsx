@@ -18,7 +18,7 @@ return <div className={css.menuContainer}>
   </button>
   {isOpen && <ul className={css.menuList}>
     <li onClick={onClose} className={css.menuItem}>
-      <Link href="/notes/filter/all" className={css.menuLink}>
+      <Link href="/notes/filter/All" className={css.menuLink}>
         All notes
       </Link>
     </li>
