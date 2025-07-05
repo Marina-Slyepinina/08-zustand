@@ -6,12 +6,11 @@ import { useNoteDraft } from "@/lib/store/noteStore";
 import type { NewNote, Tag} from "../../types/note";
 import css from "./NoteForm.module.css";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-interface NoteFormProps{
-    onClose: () => void
-}
+export default function NoteForm() {
 
-export default function NoteForm({ onClose }: NoteFormProps) {
+    const router = useRouter();
     const queryClient = useQueryClient();
     const { draft, setDraft, clearDraft } = useNoteDraft();
     const [changed, setCahged] = useState(false);
@@ -19,9 +18,9 @@ export default function NoteForm({ onClose }: NoteFormProps) {
     const createNoteMutation = useMutation({
         mutationFn: (noteData: NewNote) => createNote(noteData),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['notes'] });
+            queryClient.invalidateQueries({ queryKey: ["notes"]});
             clearDraft();
-            onClose();
+            router.back();
         }
     })
 
@@ -78,7 +77,7 @@ return <form className={css.form} action={handleSubmit}>
         </div>
     
         <div className={css.actions}>
-        <button type="button" className={css.cancelButton} onClick={onClose}>
+        <button type="button" className={css.cancelButton} onClick={() => router.back()}>
             Cancel
         </button>
         <button

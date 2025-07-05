@@ -31,7 +31,7 @@ export default function NotesClient({initialData, initialSearch, initialPage, ta
         queryKey: ["notes", debouncedValue, page, tag],
         queryFn: () => fetchNotes(debouncedValue, page, tag),
         placeholderData: keepPreviousData,
-        refetchOnMount: false,
+        refetchOnMount: true,
         initialData,
     })
 
@@ -55,7 +55,7 @@ return <>
     
     {isOpen &&
         <Modal onClose={onClose}>
-            <NoteForm onClose={onClose} />
+            <NoteForm />
         </Modal>}
 </>
 }
