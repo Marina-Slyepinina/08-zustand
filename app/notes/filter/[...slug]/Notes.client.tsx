@@ -10,6 +10,7 @@ import Modal from "@/components/Modal/Modal";
 import NoteForm from "@/components/NoteForm/NoteForm";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import css from "./Notes.client.module.css";
+import Link from "next/link";
 
 interface NotesClientProps {
     initialData: NotesResponse;
@@ -25,7 +26,6 @@ export default function NotesClient({initialData, initialSearch, initialPage, ta
     const [debouncedValue] = useDebounce(inputValue, 300)
 
     const onClose = () => setIsOpen(false);
-    const onOpen = () => setIsOpen(true);
 
     const { data, isSuccess } = useQuery({
         queryKey: ["notes", debouncedValue, page, tag],
@@ -47,7 +47,7 @@ return <>
             
             {isSuccess && data.totalPages > 1 && <Pagination totalPages={data.totalPages} currentPage={page} onPageChange={setPage} />}
                 
-            <button className={css.button} onClick={onOpen}>Create note +</button>
+            <Link className={css.button} href={"/notes/action/create"}>Create note +</Link>
         </div>
     </div>
         
