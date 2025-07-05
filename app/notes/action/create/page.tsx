@@ -5,12 +5,12 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Create New Note",
   description:
-    "",
+    "Quickly capture notes, plans, and ideas with NoteHab.",
   openGraph: {
     title: "Create New Note",
     description:
-      "",
-    url: "",
+      "Quickly capture notes, plans, and ideas with NoteHab — your personal space to store, structure, and revisit what matters.",
+    url: "https://08-zustand-blush.vercel.app/notes/action/create",
     images: [
       {
         url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
