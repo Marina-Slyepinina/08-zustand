@@ -13,7 +13,7 @@ export default function NoteForm() {
     const router = useRouter();
     const queryClient = useQueryClient();
     const { draft, setDraft, clearDraft } = useNoteDraft();
-    const [changed, setCahged] = useState(false);
+    const [changed, setChanged] = useState(false);
 
     const createNoteMutation = useMutation({
         mutationFn: (noteData: NewNote) => createNote(noteData),
@@ -30,7 +30,7 @@ export default function NoteForm() {
             content: (formData.get("content") as string).trim(),
             tag: formData.get("tag") as Tag,
         }
-        setCahged(false);
+        setChanged(false);
         createNoteMutation.mutate(newNote);
     }
 
@@ -39,7 +39,7 @@ export default function NoteForm() {
             ...draft, [event.target.name]: event.target.value,
         })
         if (event.target.name === "title" && event.target.value !== "") {
-            setCahged(true);
+            setChanged(true);
         }        
     }
 
