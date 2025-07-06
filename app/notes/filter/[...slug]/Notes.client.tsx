@@ -6,8 +6,6 @@ import { useDebounce } from 'use-debounce';
 import { fetchNotes, NotesResponse } from "@/lib/api";
 import NoteList from "@/components/NoteList/NoteList";
 import Pagination from "@/components/Pagination/Pagination";
-import Modal from "@/components/Modal/Modal";
-import NoteForm from "@/components/NoteForm/NoteForm";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import css from "./Notes.client.module.css";
 import Link from "next/link";
@@ -22,10 +20,7 @@ interface NotesClientProps {
 export default function NotesClient({initialData, initialSearch, initialPage, tag}: NotesClientProps) {  
     const [inputValue, setInputValue] = useState(initialSearch);
     const [page, setPage] = useState<number>(initialPage);
-    const [isOpen, setIsOpen] = useState<boolean>(false)
     const [debouncedValue] = useDebounce(inputValue, 300)
-
-    const onClose = () => setIsOpen(false);
 
     const { data, isSuccess } = useQuery({
         queryKey: ["notes", debouncedValue, page, tag],
@@ -52,11 +47,6 @@ return <>
     </div>
         
     {isSuccess && data.notes.length > 0 && <NoteList notes={data.notes} />}
-    
-    {isOpen &&
-        <Modal onClose={onClose}>
-            <NoteForm />
-        </Modal>}
 </>
 }
 
